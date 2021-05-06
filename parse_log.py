@@ -9,9 +9,11 @@ def readlog(path):
     with open(path, "r", encoding="utf-8") as f:  
         logging.info("ouverture du fichier")  
         line = f.readline()
+        liste.append(line.strip().split(" ",1)[::-1])
         logging.info("lecture de la premiere ligne du fichier")
         
         while line:
+
             logging.info(f"stockage de f.readline dans la variable {line}")
             line = f.readline()
             newline = line.strip()
@@ -42,13 +44,24 @@ def temps_minutes(path):
 
     logging.info(f"remplacement des temps par les minutes retour d'une liste {detail}")  
     return detail
+print(temps_minutes("planning.log"))
+
+def total_time(path):
+    elements = temps_minutes(path)
+    logging.info("")
+    total=0
+    for i in elements:
+        print(i[-1])
+        total+= i[-1]
+    return total
+
+def regroupement(path):
+
+
 
 
         
 
-        
-    
-print(temps_minutes('planning.log'))
 
 # if __name__ == "__main__":
 #     sys.exit(main())
