@@ -1,10 +1,13 @@
 import unittest
-from parse_log import readlog, temps_minutes
+from parse_log import readlog, temps_minutes, total_time
 
 # v= """
 # 11:00-11:30 Exercises
 # 11:30-12:00 Break
 # """
+l= [['Introduction', '09:20-11:00'], ['Exercises', '11:00-11:15'], ['Break', '11:15-11:35']]
+t= [['Exercises', 105], ['Solutions', 15], ['Functions', 30], ['Exercises', 30]]
+
 # r="""
 # Break                     30 minutes    50%
 # Exercises                 30 minutes    50%
@@ -21,14 +24,16 @@ class TestApp(unittest.TestCase):
         self.assertEqual(readlog('planning.log')[0],['Introduction', '09:20-11:00'])
         self.assertEqual(type(readlog('planning.log')),list)
         self.assertIsNotNone(readlog('planning.log'))
+
     def test_tempsminutes(self):
-        self.assertEqual(temps_minutes('planning.log')[0],['Introduction', 100])
-        self.assertEqual(type(temps_minutes('planning.log')), list)
-        self.assertIsNotNone(temps_minutes('planning.log'))
+        self.assertEqual(temps_minutes(l)[1],['Exercises', 15])
+        self.assertEqual(type(temps_minutes(l)), list)
+        self.assertIsNotNone(temps_minutes(l))
+        
     def test_totaltime(self):
-        self.assertEqual(total_time('planning.log'),970)
-        self.assertEqual(type(total_time('planning.log')), int)
-        self.assertIsNotNone(total_time('planning.log'))
-    def test_regroupement(self):
+        self.assertEqual(total_time(t),180)
+        self.assertEqual(type(total_time(t)), int)
+        self.assertIsNotNone(total_time(t))
+    # def test_regroupement(self):
         #self.assertEqual()
-        self.assertEqual(type)
+        #self.assertEqual(type(regroupement('planning.log')), dict)
