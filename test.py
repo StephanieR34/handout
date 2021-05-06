@@ -1,5 +1,5 @@
 import unittest
-from parse_log import readlog
+from parse_log import readlog, temps_minutes
 
 # v= """
 # 11:00-11:30 Exercises
@@ -19,5 +19,9 @@ from parse_log import readlog
 class TestApp(unittest.TestCase):
     def test_readlog(self):
         self.assertEqual(readlog('planning.log')[0],['Exercises', '11:00-11:15'])
-
-
+        self.assertEqual(type(readlog('planning.log')),list)
+        self.assertIsNotNone(readlog('planning.log'))
+    def test_tempsminutes(self):
+        self.assertEqual(temps_minutes('planning.log')[0],['Exercises', 15])
+        self.assertEqual(type(temps_minutes('planning.log')), list)
+        self.assertIsNotNone(temps_minutes('planning.log'))
