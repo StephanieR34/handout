@@ -1,5 +1,5 @@
 import unittest
-from parse_log import readlog, temps_minutes, total_time
+from parse_log import readlog, temps_minutes, total_time, regroupement
 
 # v= """
 # 11:00-11:30 Exercises
@@ -34,6 +34,8 @@ class TestApp(unittest.TestCase):
         self.assertEqual(total_time(t),180)
         self.assertEqual(type(total_time(t)), int)
         self.assertIsNotNone(total_time(t))
-    # def test_regroupement(self):
-        #self.assertEqual()
-        #self.assertEqual(type(regroupement('planning.log')), dict)
+
+    def test_regroupement(self):
+        self.assertEqual(regroupement(t)['Exercises'],135)
+        self.assertEqual(type(regroupement(t)), dict)
+        self.assertEqual(len(regroupement(t)),3)
