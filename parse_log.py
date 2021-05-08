@@ -78,7 +78,7 @@ def total_time(log_minutes):
 def pourcentage(minutes):
     logging.info("ouverture fonction pourcentage")
     total =total_time(minutes)
-    for key,valeur in minutes.items() :
+    for valeur in minutes.values() :
         a= int("".join(valeur))
         p=int(a / total * 100)       
         valeur+=[str(p)]
@@ -86,12 +86,22 @@ def pourcentage(minutes):
         
 # print(pourcentage({'Introduction': ["75"], 'Exercises': ["40"]}))
 
+
+
 def main(path):
-    for l in readlog(path):
-        return pourcentage(somme(regroupement(temps_minutes(readlog(path)))))
+    
+    dico_final=pourcentage(somme(regroupement(temps_minutes(readlog(path)))))
+        
+    with open("result.txt", "w", encoding="utf-8") as f:  
+        for key,valeur in dico_final.items():
+            espace1= (29 - (len(key)+len(valeur[1])))*" "
+            espace2= (6-(len(valeur[1])))*" "
+            f.write(f"{key}{espace1}{valeur[0]} minutes{espace2}{valeur[1]}%\n")
+        
+            
 
 
-print(main("planning.log"))
+main("planning.log")
 
 
 
