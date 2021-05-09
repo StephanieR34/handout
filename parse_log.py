@@ -1,29 +1,23 @@
 import sys
 import logging
 
-logging.basicConfig(filename="prog.log",level=logging.DEBUG)
+
 
 def readlog(path):
     
     liste=[]
     with open(path, "r", encoding="utf-8") as f:  
-        logging.info("ouverture du fichier")  
+        logging.info("ouverture du fichier par la fonction readlog")  
         line = f.readline()
         liste.append(line.strip().split(" ",1)[::-1])
-        logging.info("lecture de la premiere ligne du fichier")
         
         while line:
-
-            logging.info(f"stockage de f.readline dans la variable {line}")
             line = f.readline()
-            newline = line.strip()
-            
+            newline = line.strip()            
             if len(newline) != 0:
                 l=newline.split(" ",1)[::-1]
-                liste.append(l)
-                logging.info(f"on stock les lignes dans une liste")
-                
-    #return(dico)
+                liste.append(l)               
+    logging.info(f"stockage du fichier dans la variavle liste {liste}")           
     return liste
 
 
@@ -31,42 +25,47 @@ def temps_minutes(liste_log):
     logging.info("stockage du resultat de la fonction readlog() dans une variable")
     detail_minutes=[]
     for t in liste_log:
-        logging.info("decoupage de la liste pour travailler sur les temps")
         time = t[1].split("-")        
         a=time[0].split(":")
         b=time[1].split(":") 
-        minutes = [(int(b[0])*60+int(b[1]))-(int(a[0])*60+int(a[1]))]
-        
+        minutes = [(int(b[0])*60+int(b[1]))-(int(a[0])*60+int(a[1]))] 
         detail_minutes.append([t[0],minutes])
-        
-
-    logging.info(f"remplacement des temps par les minutes retour d'une liste {liste_log}")  
+    logging.info(f"remplacement des temps par les minutes retour d'une liste {detail_minutes}")  
     return detail_minutes
-#print(temps_minutes([['Introduction', '09:20-11:00'], ['Exercises', '11:00-11:15'], ['Break', '11:15-11:35'], ['Exercises', '13:30-14:10'], ['Break', '14:30-14:40']]))
 
 
 
 
 def regroupement(liste_minutes):
     dico = {}
+    logging.info("lancement de la fonction regroupement")
     for word in liste_minutes:
         
         if word[0] in dico:
             dico[word[0]] +=  word[1]
         else:
             dico[word[0]] = word[1]
-        
+    logging.info(f"on a regrouper dans un dictionnaire les différente valeur pour chaque exercices {dico}")   
     return dico
 
 
 def somme(dico_minute):
+    #logging.info("lancement de la fonction somme")
     for key,valeur in dico_minute.items():
-        a=0
-        for m in valeur:
-            a += m
-        dico_minute[key]=[str(a)]
+        dico_minute[key]=[sum(valeur)]
+        logging.info(valeur)
+        logging.info(type(valeur))
+
     return dico_minute
-          
+
+def change_values(minutes):
+    for key,valeur in minutes.items():
+        for j in valeur :
+            j= str(j)
+        minutes[key]=[j]
+            
+    return minutes
+
 def total_time(log_minutes):
     logging.info("ouverture de la fonction total_time")
     total=0
@@ -74,39 +73,32 @@ def total_time(log_minutes):
         total+=int("".join(valeur))
     logging.info(f"return {total}")
     return total
-          
+
+
 def pourcentage(minutes):
     logging.info("ouverture fonction pourcentage")
     total =total_time(minutes)
     for valeur in minutes.values() :
         a= int("".join(valeur))
-        p=int(a / total * 100)       
+        p=round(a / total * 100)       
         valeur+=[str(p)]
     return minutes   
         
-# print(pourcentage({'Introduction': ["75"], 'Exercises': ["40"]}))
-
-
 
 def main(path):
     
-    dico_final=pourcentage(somme(regroupement(temps_minutes(readlog(path)))))
+    dico_final=pourcentage(change_values(somme(regroupement(temps_minutes(readlog(path))))))
         
     with open("result.txt", "w", encoding="utf-8") as f:  
         for key,valeur in dico_final.items():
             espace1= (29 - (len(key)+len(valeur[1])))*" "
             espace2= (6-(len(valeur[1])))*" "
             f.write(f"{key}{espace1}{valeur[0]} minutes{espace2}{valeur[1]}%\n")
-        
-            
 
 
-main("planning.log")
+if __name__ == "__main__":
 
+    path = sys.argv[1]
 
-
-        
-
-
-# if __name__ == "__main__":
-#     sys.exit(main())
+    logging.basicConfig(filename="prog.log",level=logging.DEBUG)
+    sys.exit(main(path))

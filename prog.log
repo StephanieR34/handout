@@ -1,0 +1,29 @@
+INFO:root:ouverture du fichier par la fonction readlog
+INFO:root:stockage du fichier dans la variavle liste [['Introduction', '09:20-11:00'], ['Exercises', '11:00-11:15'], ['Break', '11:15-11:35'], ['Numbers and strings', '11:35-12:30'], ['Lunch Break', '12:30-13:30'], ['Exercises', '13:30-14:10'], ['Solutions', '14:10-14:30'], ['Break', '14:30-14:40'], ['Lists', '14:40-15:40'], ['Exercises', '15:40-17:00'], ['Solutions', '17:00-17:30'], ['Lists and Tuples', '09:30-10:30'], ['Break', '10:30-10:50'], ['Exercises', '10:50-12:00'], ['Solutions', '12:00-12:30'], ['Dictionaries', '12:30-12:45'], ['Lunch Break', '12:45-14:15'], ['Exercises', '14:15-16:00'], ['Solutions', '16:00-16:15'], ['Break', '16:15-16:30'], ['Functions', '16:30-17:00'], ['Exercises', '17:00-17:30']]
+INFO:root:stockage du resultat de la fonction readlog() dans une variable
+INFO:root:remplacement des temps par les minutes retour d'une liste [['Introduction', [100]], ['Exercises', [15]], ['Break', [20]], ['Numbers and strings', [55]], ['Lunch Break', [60]], ['Exercises', [40]], ['Solutions', [20]], ['Break', [10]], ['Lists', [60]], ['Exercises', [80]], ['Solutions', [30]], ['Lists and Tuples', [60]], ['Break', [20]], ['Exercises', [70]], ['Solutions', [30]], ['Dictionaries', [15]], ['Lunch Break', [90]], ['Exercises', [105]], ['Solutions', [15]], ['Break', [15]], ['Functions', [30]], ['Exercises', [30]]]
+INFO:root:lancement de la fonction regroupement
+INFO:root:on a regrouper dans un dictionnaire les différente valeur pour chaque exercices {'Introduction': [100], 'Exercises': [15, 40, 80, 70, 105, 30], 'Break': [20, 10, 20, 15], 'Numbers and strings': [55], 'Lunch Break': [60, 90], 'Solutions': [20, 30, 30, 15], 'Lists': [60], 'Lists and Tuples': [60], 'Dictionaries': [15], 'Functions': [30]}
+INFO:root:[100]
+INFO:root:<class 'list'>
+INFO:root:[15, 40, 80, 70, 105, 30]
+INFO:root:<class 'list'>
+INFO:root:[20, 10, 20, 15]
+INFO:root:<class 'list'>
+INFO:root:[55]
+INFO:root:<class 'list'>
+INFO:root:[60, 90]
+INFO:root:<class 'list'>
+INFO:root:[20, 30, 30, 15]
+INFO:root:<class 'list'>
+INFO:root:[60]
+INFO:root:<class 'list'>
+INFO:root:[60]
+INFO:root:<class 'list'>
+INFO:root:[15]
+INFO:root:<class 'list'>
+INFO:root:[30]
+INFO:root:<class 'list'>
+INFO:root:ouverture fonction pourcentage
+INFO:root:ouverture de la fonction total_time
+INFO:root:return 970
