@@ -3,8 +3,7 @@ import logging
 
 
 
-def readlog(path):
-    
+def readlog(path):    
     liste=[]
     with open(path, "r", encoding="utf-8") as f:  
         logging.info("ouverture du fichier par la fonction readlog")  
@@ -55,15 +54,13 @@ def somme(dico_minute):
         dico_minute[key]=[sum(valeur)]
         logging.info(valeur)
         logging.info(type(valeur))
-
     return dico_minute
 
 def change_values(minutes):
     for key,valeur in minutes.items():
         for j in valeur :
             j= str(j)
-        minutes[key]=[j]
-            
+        minutes[key]=[j]            
     return minutes
 
 def total_time(log_minutes):
@@ -85,10 +82,8 @@ def pourcentage(minutes):
     return minutes   
         
 
-def main(path):
-    
-    dico_final=pourcentage(change_values(somme(regroupement(temps_minutes(readlog(path))))))
-        
+def main(path):    
+    dico_final=pourcentage(change_values(somme(regroupement(temps_minutes(readlog(path))))))        
     with open("result.txt", "w", encoding="utf-8") as f:  
         for key,valeur in dico_final.items():
             espace1= (29 - (len(key)+len(valeur[1])))*" "
@@ -97,8 +92,6 @@ def main(path):
 
 
 if __name__ == "__main__":
-
     path = sys.argv[1]
-
     logging.basicConfig(filename="prog.log",level=logging.DEBUG)
     sys.exit(main(path))
