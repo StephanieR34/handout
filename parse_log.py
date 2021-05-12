@@ -42,7 +42,8 @@ def regroupement(liste_minutes):
             dico[word[0]] += word[1]
         else:
             dico[word[0]] = word[1]
-    logging.info(f"on a regrouper dans un dictionnaire les différente valeur pour chaque exercices {dico}")   
+    logging.info(f"on a regrouper dans un dictionnaire \
+                  les différente valeur pour chaque exercices {dico}")
     return dico
 
 
@@ -83,8 +84,9 @@ def pourcentage(minutes):
 
 
 def main(path):
-    dico_final = pourcentage(
-        change_values(somme(regroupement(temps_minutes(readlog(path))))))
+    lecture = readlog(path)
+    firstdico = regroupement(temps_minutes(lecture))
+    dico_final = pourcentage(change_values(somme(firstdico)))
     with open("result.txt", "w", encoding="utf-8") as f:
         for key, valeur in dico_final.items():
             espace1 = (29 - (len(key)+len(valeur[1])))*" "
