@@ -3,10 +3,6 @@ from parse_log import readlog, temps_minutes, total_time, regroupement
 from parse_log import somme, change_values, pourcentage
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 719030ee345a9da37b567d60001c1db5ad40f3a1
 class TestApp(unittest.TestCase):
     def test_readlog(self):
         self.assertEqual(
@@ -20,7 +16,7 @@ class TestApp(unittest.TestCase):
             temps_minutes(r), [['Introduction', [100]], ['Exercises', [15]]])
         self.assertEqual(type(temps_minutes(r)), list)
         self.assertIsNotNone(temps_minutes(r))
-         
+
     def test_regroupement(self):
         t = [['Exercises', [15]], ['Break', [20]], ['Lunch Break', [60]], 
              ['Exercises', [40]], ['Break', [10]], ['Exercises', [80]]]
