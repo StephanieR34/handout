@@ -1,6 +1,8 @@
 import unittest
-from parse_log import readlog, temps_minutes, total_time, regroupement
-from parse_log import somme, change_values, pourcentage
+import os
+from liste import readlog, temps_minutes
+from dico import total_time, regroupement, somme, change_values, pourcentage
+from parse_log import main
 
 
 class TestApp(unittest.TestCase):
@@ -55,6 +57,10 @@ class TestApp(unittest.TestCase):
         self.assertIs(type(pourcentage(t)), dict)
         self.assertIsNotNone(pourcentage(t))
 
+    def test_main(self):
+        self.assertFalse(os.path.isfile("result.txt"))
+        main("planning.log")
+        self.assertTrue(os.path.isfile("result.txt"))
 
 if __name__ == '__main__':
     unittest.main()
